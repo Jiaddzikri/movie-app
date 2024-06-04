@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 
 @section('content')
@@ -5,7 +6,7 @@
     <div class="container mx-auto px-4 md:px-20 py-16 flex flex-col md:flex-row">
       <img src="https://image.tmdb.org/t/p/w500/{{ $movieDetails['poster_path'] }}" alt="parasite" class="w-96">
       <div class="ml-2 md:ml-24 mt-8 md:mt-0">
-        <h2 class="text-4xl font-semibold">{{ $movieDetails['title'] ?? $movieDetails["name"]}}</h2>
+        <h2 class="text-4xl font-semibold">{{ $movieDetails['title'] }}</h2>
         <div class="flex flex-wrap items-center text-gray-400 text-sm mt-2">
           <svg class="fill-current text-orange-500 w-4" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve">
@@ -15,7 +16,7 @@
           <span class="ml-2">{{ $movieDetails['vote_average'] }}</span>
           <span class="mx-2">|</span>
 
-          <span>{{ \Carbon\Carbon::parse($movieDetails['release_date'] ?? $movieDetails["first_air_date"])->format('M d, Y') }}</span>
+          <span>{{ \Carbon\Carbon::parse($movieDetails['release_date'])->format('M d, Y') }}</span>
           <span class="mx-2">|</span>
           <span>
             @foreach ($movieDetails['genres'] as $genre)

@@ -7,7 +7,9 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      innerShadow: "inset 0 0 10px 0 white"
+    },
   },
   plugins: [],
 }

@@ -6,12 +6,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class MovieCard extends Component
+class Pagination extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public $movie, public $genres, public $url)
+    public function __construct(public string $url,public int $currentPage, public int $startingPage, public int $lastPage, public int $totalPage)
     {
         //
     }
@@ -21,6 +21,6 @@ class MovieCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.movie-card');
+        return view('components.pagination');
     }
 }
