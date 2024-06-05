@@ -15,7 +15,7 @@
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-20 py-6">
       <ul class="flex flex-col  md:flex-row items-center">
         <li class="flex gap-3 items-center">
-          <a href="" class="block w-[50px] h-[50px] bg-white rounded-full"></a>
+          <a href="" class="block w-[50px] h-[50px] bg-orange-500 rounded-full"></a>
           <h1 class="font-semibold text-xl">Movie App</h1>
         </li>
         <li class="md:ml-16 mt-3 md:mt-0">
@@ -30,7 +30,7 @@
       </ul>
       <div class="flex items-center flex-col md:flex-row">
         <div class="relative">
-          <form class="flex gap-3" action="{{ route('movies.search') }}" method="GET">
+          <form class="flex gap-3 flex-col md:flex-row" action="{{ route('movies.search') }}" method="GET">
             <input
               class="border border-gray-500 mt-4 md:mt-0 rounded-full w-64 px-4 py-1 focus:outline-none focus:shadow-outline"
               type="text" placeholder="search..." name="query">
