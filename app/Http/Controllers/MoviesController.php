@@ -78,15 +78,15 @@ class MoviesController extends Controller
 
     return view("tv-show", [
       "movies" => $topRated["results"],
-      "genres"=> $this->genres(),
+      "genres" => $this->genres(),
       "currentPage" => $paginate["currentPage"],
-      "startingPage"=> $paginate["startingPage"],
+      "startingPage" => $paginate["startingPage"],
       "lastPage" => $paginate["lastPage"],
       "totalPage" => $paginate["totalPages"],
     ]);
   }
 
-  public function tvShowDetail(string $id) 
+  public function tvShowDetail(string $id)
   {
 
     $movieDetails = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/tv/" . $id)->json();
@@ -103,10 +103,10 @@ class MoviesController extends Controller
 
   public function actors(Request $request)
   {
-    $currentPage = $request->input("page",1);
+    $currentPage = $request->input("page", 1);
     $persons = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/popular")->json();
     $paginate = Pagination::paginate($currentPage, $persons["total_pages"]);
-    return view("persons",[
+    return view("persons", [
       "persons" => $persons["results"],
       "currentPage" => $paginate["currentPage"],
       "startingPage" => $paginate["startingPage"],
@@ -117,18 +117,38 @@ class MoviesController extends Controller
 
   public function actor(string $id)
   {
-   $person = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/".$id)->json();
-   $movies = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/".$id."/movie_credits")->json()["cast"];
-   $tvShows = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/".$id."/tv_credits")->json()["cast"];
-   
-   return view("person-detail",[
-    "person" => $person,
-    "movies" => $movies,
-    "genres" => $this->genres(),
-    "tvShows" => $tvShows
-   ]);
+    $person = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/" . $id)->json();
+    $movies = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/" . $id . "/movie_credits")->json()["cast"];
+    $tvShows = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/" . $id . "/tv_credits")->json()["cast"];
+
+    return view("person-detail", [
+      "person" => $person,
+      "movies" => $movies,
+      "genres" => $this->genres(),
+      "tvShows" => $tvShows
+    ]);
   }
 
+  public function search(Request $request)
+  {
+    $search = $request->get("query", "");
+    $currentPage = $request->get("page", 1);
 
+    $response = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/search/multi?query=" . $search . "&" . "page=" . $currentPage);
+    $status = $response->ok();
 
+    $datas = $response->json();
+    $paginate = Pagination::paginate($currentPage, $datas["total_pages"]);
+
+    return view("search", [
+      "datas" => $datas["results"],
+      "genres" => $this->genres(),
+      "search" => $search,
+      "status" => $status,
+      "currentPage" => $paginate["currentPage"],
+      "startingPage" => $paginate["startingPage"],
+      "lastPage" => $paginate["lastPage"],
+      "totalPage" => $paginate["totalPages"]
+    ]);
+  }
 }

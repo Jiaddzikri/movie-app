@@ -19,20 +19,23 @@
           <h1 class="font-semibold text-xl">Movie App</h1>
         </li>
         <li class="md:ml-16 mt-3 md:mt-0">
-          <a href="{{route("movies.movies")}}" class="hover:text-gray-500">Movies</a>
+          <a href="{{ route('movies.movies') }}" class="hover:text-gray-500">Movies</a>
         </li>
         <li class="md:ml-6 mt-3 md:mt-0">
-          <a href="{{route("movies.tvShow")}}" class="hover:text-gray-500">Tv Shows</a>
+          <a href="{{ route('movies.tvShow') }}" class="hover:text-gray-500">Tv Shows</a>
         </li>
         <li class="md:ml-6 mt-3 md:mt-0">
-          <a href="{{route("movies.actors")}}" class="hover:text-gray-500">Actors</a>
+          <a href="{{ route('movies.actors') }}" class="hover:text-gray-500">Actors</a>
         </li>
       </ul>
       <div class="flex items-center flex-col md:flex-row">
         <div class="relative">
-          <input
-            class="border border-gray-500 mt-4 md:mt-0 rounded-full w-64 px-4 py-1 focus:outline-none focus:shadow-outline"
-            type="text" placeholder="search...">
+          <form class="flex gap-3" action="{{ route('movies.search') }}" method="GET">
+            <input
+              class="border border-gray-500 mt-4 md:mt-0 rounded-full w-64 px-4 py-1 focus:outline-none focus:shadow-outline"
+              type="text" placeholder="search..." name="query">
+              <button type="submit" class="flex justify-center items-center rounded-full px-4 py-1 focus:outline focus:shadow-outline bg-orange-500 text-white">Search</button>
+          </form>
         </div>
         <div class="md:ml-4 mt-4 md:mt-0">
           <a href="">
@@ -50,6 +53,7 @@
     </div>
   </footer>
 
-  <script src="{{asset("js/app.js")}}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
 </html>

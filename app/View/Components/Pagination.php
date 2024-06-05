@@ -11,7 +11,7 @@ class Pagination extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $url,public int $currentPage, public int $startingPage, public int $lastPage, public int $totalPage)
+    public function __construct(public string $url, public int $currentPage, public int $startingPage, public int $lastPage, public int $totalPage, public string $query = "")
     {
         //
     }

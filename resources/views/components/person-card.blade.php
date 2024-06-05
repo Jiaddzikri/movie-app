@@ -13,6 +13,7 @@
       </svg>
       <span class="ml-2">{{ $person['popularity'] }}</span>
       <span class="mx-2">|</span>
+      <span class="mx-2">{{$person["original_name"]}}</span>
     </div>
   </div>
 </div>
