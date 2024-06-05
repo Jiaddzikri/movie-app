@@ -101,5 +101,34 @@ class MoviesController extends Controller
     ]);
   }
 
+  public function actors(Request $request)
+  {
+    $currentPage = $request->input("page",1);
+    $persons = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/popular")->json();
+    $paginate = Pagination::paginate($currentPage, $persons["total_pages"]);
+    return view("persons",[
+      "persons" => $persons["results"],
+      "currentPage" => $paginate["currentPage"],
+      "startingPage" => $paginate["startingPage"],
+      "lastPage" => $paginate["lastPage"],
+      "totalPage" => $paginate["totalPages"]
+    ]);
+  }
+
+  public function actor(string $id)
+  {
+   $person = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/".$id)->json();
+   $movies = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/".$id."/movie_credits")->json()["cast"];
+   $tvShows = Http::withHeaders($this->headers())->get("https://api.themoviedb.org/3/person/".$id."/tv_credits")->json()["cast"];
+   
+   return view("person-detail",[
+    "person" => $person,
+    "movies" => $movies,
+    "genres" => $this->genres(),
+    "tvShows" => $tvShows
+   ]);
+  }
+
+
 
 }

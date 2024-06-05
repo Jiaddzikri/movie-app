@@ -43,6 +43,12 @@
     </div>
   </nav>
   @yield('content')
+  <footer class="border-t border-gray-500">
+    <div class="container px-20 py-10 text-center">
+      <h2 class="font-bold text-orange-500 text-2xl">Movie App</h2>
+      <span class="text-gray-500 text-sm mt-3">Made By Jiad Dzikri Ramadia</span>
+    </div>
+  </footer>
 
   <script src="{{asset("js/app.js")}}"></script>
 </body>

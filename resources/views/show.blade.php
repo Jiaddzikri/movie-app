@@ -29,7 +29,7 @@
           {{ $movieDetails['overview'] }}
         </p>
         <div class="mt-12">
-          <h4 class="text-white font-semibold">Featured Crew</h4>
+          <h4 class="text-black font-semibold">Featured Crew</h4>
           <div class="flex mt-4 gap-10">
             @foreach ($credits['crew'] as $crew)
               @if ($loop->index < 2)
@@ -42,7 +42,7 @@
 
           </div>
         </div>
-        <div class="mt-12">
+        <div class="mt-6">
           <button
             class="flex items-center gap-4 bg-orange-500 text-white rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
             <svg class="w-6 fill-current" white" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -72,12 +72,12 @@
         @foreach ($credits['cast'] as $cast)
           @if ($loop->index < 10)
             <div class="mt-12">
-              <a href="">
+              <a href="/actor/{{$cast["id"]}}">
                 <img src="https://image.tmdb.org/t/p/w500/{{ $cast['profile_path'] }}" alt=""
                   class="w-96 md:w-full hover:opacity-75 transition-ease-in-out duration-150">
               </a>
               <div class="mt-3">
-                <a href="#" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
+                <a href="/actor/{{$cast["id"]}}" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
                 <div class="text-gray-400 text-sm">
                   <span>{{ $cast['character'] }}</span>
                 </div>
